@@ -1,0 +1,17 @@
+Package: spatstatsphere
+Type: Package
+Title: Point patterns on the sphere for spatstat package
+Version: 0.1
+Date: 2015-11-09
+Authors@R: c(
+    person('Ege', 'Rubak', email='rubak@math.aau.dk', role = c('aut', 'cre')),
+    person('Adrian', 'Baddeley', email='Adrian.Baddeley@curtin.edu.au', role = 'aut'),
+    person('Rolf', 'Turner', email='r.turner@auckland.ac.nz', role = 'aut')
+    )
+Description: Point patterns on the sphere for spatstat package.
+Depends:
+    R (>= 3.2.2),
+    spatstat (>= 1.43-0)
+License: GPL (>= 2)
+LazyData: TRUE
+Suggests: testthat
