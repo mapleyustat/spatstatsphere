@@ -58,6 +58,11 @@ print.spp <- function(x, ...){
   spatstat:::splat(paste("Spherical point pattern with", npoints(x), "points."))
   spatstat:::splat("Domain:")
   print(x$domain)
+  # Temporary hack: Detect attribute set by simulation algorithm for DPPs
+  nmean <- attr(x, "nmean")
+  if(!is.null(nmean)){
+    cat(paste("It has been simulated from a model where\n", "the expected number of points is: ", signif(nmean,4), "\n", sep=""))
+  }
   return(invisible(NULL))
 }
 
