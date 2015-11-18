@@ -37,10 +37,13 @@ Kspp <- function(X, r = NULL, rmax = NULL, breaks = NULL, correction = NULL){
 
   # Choose correction based on domain if unset by user
   dom <- domain(X)
+  best_correction <- ifelse(dom$type=="sphere", "none", "border")
   if(missing(correction) || is.null(correction)){
-    correction <- ifelse(dom$type=="sphere", "none", "border")
+    correction <- best_correction
   }
-  correction <- pickoption("correction", correction, c(none="none", border="border"), multi=TRUE)
+  correction <- pickoption("correction", correction,
+                           c(none="none", border="border", best = best_correction),
+                           multi=TRUE)
 
   # Intensity
   areaW <- area(dom)
