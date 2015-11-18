@@ -4,16 +4,20 @@
 \alias{spp}
 \title{Spherical point pattern}
 \usage{
-spp(lat, long, domain = sphere(1), check = TRUE)
+spp(lat, long, domain = NULL, ..., check = TRUE)
 }
 \arguments{
 \item{lat}{Numeric. Latitudes of points.}
 
 \item{long}{Numeric. Longitude of points.}
 
-\item{domain}{Domain where the points occur. Object of class \code{"sphericaldomain"}.}
+\item{domain}{Domain where the points occur. Object of class
+\code{"sphericaldomain"}.}
 
-\item{check}{Logical. Check that points actually are inside the provided \code{domain}.}
+\item{...}{Arguments passed to \code{\link{sphere}} if the domain is not otherwise specified.}
+
+\item{check}{Logical. Check that points actually are inside the provided
+  \code{domain}.}
 }
 \value{
 Object of class \code{"spp"}.
@@ -25,11 +29,13 @@ Import spatstat
 dom <- sphere(coord_type = "polar")
 lat <- pi * c(1/4, 1/2, 3/4)
 long <- 2 * pi * c(1/4, 1/2, 3/4)
-X <- spp(lat, long, dom)
+X <- spp(lat, long, domain = dom)
+X <- spp(lat, long, coord_type = "polar")
 
-dom <- sphere(coord_type = "geo_deg")
 lat <- c(45, 0, -45)
 long <- c(90, 180, -90)
-X <- spp(lat, long, dom)
+X <- spp(lat, long)
+dom <- sphere(coord_type = "geo_deg")
+X <- spp(lat, long, domain = dom)
 }
 

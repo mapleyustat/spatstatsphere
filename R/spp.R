@@ -8,6 +8,7 @@
 #' @param long Numeric. Longitude of points.
 #' @param domain Domain where the points occur. Object of class
 #'   \code{"sphericaldomain"}.
+#' @template dots_sphere
 #' @param check Logical. Check that points actually are inside the provided
 #'   \code{domain}.
 #'
@@ -18,13 +19,19 @@
 #' dom <- sphere(coord_type = "polar")
 #' lat <- pi * c(1/4, 1/2, 3/4)
 #' long <- 2 * pi * c(1/4, 1/2, 3/4)
-#' X <- spp(lat, long, dom)
+#' X <- spp(lat, long, domain = dom)
+#' X <- spp(lat, long, coord_type = "polar")
 #'
-#' dom <- sphere(coord_type = "geo_deg")
 #' lat <- c(45, 0, -45)
 #' long <- c(90, 180, -90)
-#' X <- spp(lat, long, dom)
-spp <- function(lat, long, domain = sphere(1), check = TRUE){
+#' X <- spp(lat, long)
+#' dom <- sphere(coord_type = "geo_deg")
+#' X <- spp(lat, long, domain = dom)
+#'
+spp <- function(lat, long, domain = NULL, ..., check = TRUE){
+  if(is.null(domain)){
+    domain <- do.call(sphere, list(...))
+  }
   n <- (length(lat) + length(long))/2
   if (check && n > 0) {
     ok <- inside_sphericaldomain(lat, long, domain)
