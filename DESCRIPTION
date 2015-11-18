@@ -14,4 +14,6 @@ Depends:
     spatstat (>= 1.43-0)
 License: GPL (>= 2)
 LazyData: TRUE
-Suggests: testthat
+Suggests:
+    testthat
+RoxygenNote: 5.0.1.9000
