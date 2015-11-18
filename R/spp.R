@@ -259,3 +259,29 @@ transspherecoords <- function(lat, long, from, to){
   }
   return(list(lat = lat, long = long))
 }
+
+#' Extract a subset of a point pattern on a sphere. Extraction of a subset has
+#' the effect of thinning the points.
+#'
+#' @param x object of class \code{"spp"}.
+#' @param i Subset index. A valid subset index in the usual R sense, indicating
+#' which points should be retained.
+#' @param j Ignored. (Required for compatibility with the generic function.)
+#' @param drop Ignored. (Required for compatibility with the generic function.)
+#' @param \dots Ignored. (Required for compatibility with the generic
+#' function.)
+#' @return object of class \code{"spp"}.
+#' @export
+#' @examples
+#'
+#' X <- spp(c(-45,0,45), c(-10,0,160))
+#' X[1:2]
+#'
+"[.spp" <- function(x, i, j, drop, ...) {
+    verifyclass(x, "spp")
+    if(missing(i))
+        return(x)
+    if(x$n == 0)
+        return(x)
+    return(spp(x$lat[i], x$long[i], domain = domain(x)))
+}
