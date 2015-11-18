@@ -211,7 +211,7 @@ as.spp <- function(X, ...){
   UseMethod("as.spp")
 }
 
-#' @describeIn as.spp
+#' @describeIn as.spp Method for spp objects.
 #' @template domain
 #' @export
 as.spp.spp <- function(X, ..., domain = NULL){
@@ -223,7 +223,7 @@ as.spp.spp <- function(X, ..., domain = NULL){
   spp(co$lat, co$long, domain = domain, check = FALSE)
 }
 
-#' @describeIn as.spp
+#' @describeIn as.spp Method for data frames.
 #' @export
 as.spp.data.frame <- function(X, ..., domain = NULL){
   if(is.null(domain))
@@ -231,7 +231,7 @@ as.spp.data.frame <- function(X, ..., domain = NULL){
   spp(X[[1]], X[[2]], domain = domain, check = TRUE)
 }
 
-#' @describeIn as.spp
+#' @describeIn as.spp Method for matrices.
 #' @export
 as.spp.matrix <- function(X, ..., domain = NULL){
   if(is.null(domain))
@@ -239,7 +239,7 @@ as.spp.matrix <- function(X, ..., domain = NULL){
   spp(X[,1], X[,2], domain = domain, check = TRUE)
 }
 
-#' @describeIn as.spp
+#' @describeIn as.spp Default method.
 #' @export
 as.spp.default <- function(X, ..., domain = NULL){
   if(is.null(domain))
