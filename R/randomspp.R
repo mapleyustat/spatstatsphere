@@ -3,7 +3,9 @@
 #' @param n Number of points to generate.
 #' @template domain
 #' @param nsim Number of simulated realisations to be generated.
-#' @param drop Logical. If nsim=1 and drop=TRUE (the default), the result will be a spherical point pattern, rather than a list containing a spherical point pattern.
+#' @param drop Logical. If nsim=1 and drop=TRUE (the default), the result will
+#'   be a spherical point pattern, rather than a list containing a spherical
+#'   point pattern.
 #' @template dots_sphere
 #'
 #' @return Spherical point pattern of class \code{"spp"}.
@@ -31,11 +33,13 @@ runifspp <- function(n, domain = NULL, nsim = 1, ..., drop = TRUE){
 #' @param lambda Intensity. A positive numeric.
 #' @template domain
 #' @param nsim Number of simulated realisations to be generated.
-#' @param drop Logical. If nsim=1 and drop=TRUE (the default), the result will be a spherical point pattern, rather than a list containing a spherical point pattern.
+#' @param drop Logical. If nsim=1 and drop=TRUE (the default), the result will
+#'   be a spherical point pattern, rather than a list containing a spherical
+#'   point pattern.
 #' @template dots_sphere
 #'
 #' @return List of \code{nsim} spherical point patterns (of class \code{"spp"}).
-#'  Or a spherical point pattern if nsim=1 and drop=TRUE (the default).
+#'   Or a spherical point pattern if nsim=1 and drop=TRUE (the default).
 #' @export
 #'
 #' @examples

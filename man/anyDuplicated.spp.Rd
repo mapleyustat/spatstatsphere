@@ -9,10 +9,12 @@
 \arguments{
 \item{x}{Spherical point patten of class \code{"spp"}.}
 
-\item{...}{Additional arguments passed to \code{\link{anyDuplicated.data.frame}}.}
+\item{...}{Additional arguments passed to
+  \code{\link{anyDuplicated.data.frame}}.}
 }
 \value{
-An integer or real vector of length one with value the 1-based index of the first duplicate if any, otherwise 0.
+An integer or real vector of length one with value the 1-based index
+  of the first duplicate if any, otherwise 0.
 }
 \description{
 Check for duplicated points in a spherical point pattern.

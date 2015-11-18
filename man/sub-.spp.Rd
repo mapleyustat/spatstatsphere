@@ -17,8 +17,7 @@ which points should be retained.}
 
 \item{drop}{Ignored. (Required for compatibility with the generic function.)}
 
-\item{\dots}{Ignored. (Required for compatibility with the generic
-function.)}
+\item{\dots}{Ignored. (Required for compatibility with the generic function.)}
 }
 \value{
 object of class \code{"spp"}.

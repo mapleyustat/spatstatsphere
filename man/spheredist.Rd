@@ -7,12 +7,14 @@
 spheredist(lat1, long1, lat2, long2, domain = sphere(1))
 }
 \arguments{
-\item{lat1,lat2}{Numeric of length 1. Latitude in radians between -pi/2 and pi/2.}
+\item{lat1,lat2}{Numeric of length 1. Latitude in radians between -pi/2 and
+pi/2.}
 
-\item{long1,long2}{Numeric of length 1. Longitude in radians between -pi and pi (or between 0 and 2*pi).}
+\item{long1,long2}{Numeric of length 1. Longitude in radians between -pi and
+pi (or between 0 and 2*pi).}
 
-\item{domain}{Sphere object of class \code{"sphericaldomain"} specifying radius of sphere and type of coordinates.
- Defaults to \code{sphere(1)}.}
+\item{domain}{Sphere object of class \code{"sphericaldomain"} specifying
+  radius of sphere and type of coordinates. Defaults to \code{sphere(1)}.}
 }
 \value{
 Numeric of length 1.
@@ -21,6 +23,7 @@ Numeric of length 1.
 Distance on sphere.
 }
 \details{
-Low-level function to calculate distance on the sphere. No checking of arguments is done.
+Low-level function to calculate distance on the sphere. No checking
+  of arguments is done.
 }
 

@@ -10,29 +10,31 @@ Kspp(X, r = NULL, rmax = NULL, breaks = NULL, correction = NULL)
 \item{X}{Object of class \code{"spp"}.}
 
 \item{r}{Optional. Vector of values for the argument \eqn{r} at which
-\eqn{K(r)} should be evaluated. Users are advised \emph{not} to specify this
-argument; there is a sensible default. If necessary, specify \code{rmax}.}
+\eqn{K(r)} should be evaluated. Users are advised \emph{not} to specify
+this argument; there is a sensible default. If necessary, specify
+\code{rmax}.}
 
 \item{rmax}{Optional. Maximum desired value of the argument \eqn{r}.}
 
 \item{breaks}{This argument is for internal use only.}
 
 \item{correction}{Optional. A character vector containing any selection of
-the options \code{"none"} and \code{"border"} (and possibly others in the future).}
+the options \code{"none"} and \code{"border"} (and possibly others in the
+future).}
 
 \item{\dots}{Ignored.}
 }
 \value{
 An object of class \code{"fv"}, see \code{\link{fv.object}}, which
-can be plotted directly using \code{\link{plot.fv}}.
+  can be plotted directly using \code{\link{plot.fv}}.
 
-Essentially a data frame containing columns \item{r}{the vector of values of
-the argument \eqn{r} at which the function \eqn{K} has been estimated }
-\item{theo}{the theoretical value \eqn{K(r) = 2 \pi (1-cos(r))}{K(r) = 2 * pi * (1 - cos(r))} for
-a stationary Poisson process } together with columns named \code{"none"},
-and/or \code{"border"}, according to the
-selected edge corrections. These columns contain estimates of the function
-\eqn{K(r)} obtained by the edge corrections named.
+  Essentially a data frame containing columns \item{r}{the vector of values
+  of the argument \eqn{r} at which the function \eqn{K} has been estimated }
+  \item{theo}{the theoretical value \eqn{K(r) = 2 \pi (1-cos(r))}{K(r) = 2 *
+  pi * (1 - cos(r))} for a stationary Poisson process } together with columns
+  named \code{"none"}, and/or \code{"border"}, according to the selected edge
+  corrections. These columns contain estimates of the function \eqn{K(r)}
+  obtained by the edge corrections named.
 }
 \description{
 K-function for spherical point pattern

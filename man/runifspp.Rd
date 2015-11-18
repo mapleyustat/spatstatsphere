@@ -15,7 +15,9 @@ runifspp(n, domain = NULL, nsim = 1, ..., drop = TRUE)
 
 \item{...}{Arguments passed to \code{\link{sphere}} if the domain is not otherwise specified.}
 
-\item{drop}{Logical. If nsim=1 and drop=TRUE (the default), the result will be a spherical point pattern, rather than a list containing a spherical point pattern.}
+\item{drop}{Logical. If nsim=1 and drop=TRUE (the default), the result will
+be a spherical point pattern, rather than a list containing a spherical
+point pattern.}
 }
 \value{
 Spherical point pattern of class \code{"spp"}.

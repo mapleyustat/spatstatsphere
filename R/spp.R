@@ -6,8 +6,10 @@
 #'
 #' @param lat Numeric. Latitudes of points.
 #' @param long Numeric. Longitude of points.
-#' @param domain Domain where the points occur. Object of class \code{"sphericaldomain"}.
-#' @param check Logical. Check that points actually are inside the provided \code{domain}.
+#' @param domain Domain where the points occur. Object of class
+#'   \code{"sphericaldomain"}.
+#' @param check Logical. Check that points actually are inside the provided
+#'   \code{domain}.
 #'
 #' @return Object of class \code{"spp"}.
 #' @export
@@ -61,7 +63,9 @@ print.spp <- function(x, ...){
   # Temporary hack: Detect attribute set by simulation algorithm for DPPs
   nmean <- attr(x, "nmean")
   if(!is.null(nmean)){
-    cat(paste("It has been simulated from a model where\n", "the expected number of points is: ", signif(nmean,4), "\n", sep=""))
+    cat(paste("It has been simulated from a model where\n",
+              "the expected number of points is: ",
+              signif(nmean,4), "\n", sep=""))
   }
   return(invisible(NULL))
 }
@@ -102,9 +106,11 @@ npoints.spp <- function(x){
 #' Check for duplicated points in a spherical point pattern.
 #'
 #' @param x Spherical point patten of class \code{"spp"}.
-#' @param ... Additional arguments passed to \code{\link{anyDuplicated.data.frame}}.
+#' @param ... Additional arguments passed to
+#'   \code{\link{anyDuplicated.data.frame}}.
 #'
-#' @return An integer or real vector of length one with value the 1-based index of the first duplicate if any, otherwise 0.
+#' @return An integer or real vector of length one with value the 1-based index
+#'   of the first duplicate if any, otherwise 0.
 #' @export
 #'
 anyDuplicated.spp <- function(x, ...){
@@ -114,10 +120,12 @@ anyDuplicated.spp <- function(x, ...){
 #' Extract coordinates of a spherical point pattern into a data.frame
 #'
 #' @param x Spherical point patten of class \code{"spp"}.
-#' @param row.names NULL or a character vector giving the row names for the data frame. Missing values are not allowed.
+#' @param row.names NULL or a character vector giving the row names for the data
+#'   frame. Missing values are not allowed.
 #' @param ... Ignored.
-#' @param coord_type String. Type of coordinates used for return coordinates. Defaults to coordinate type of \code{x}.
-#'  See \code{\link{spp}} for supported coordinate types.
+#' @param coord_type String. Type of coordinates used for return coordinates.
+#'   Defaults to coordinate type of \code{x}. See \code{\link{spp}} for
+#'   supported coordinate types.
 #'
 #' @return \code{data.frame} with coordinates.
 #' @export
@@ -145,24 +153,28 @@ as.data.frame.spp <- function(x, row.names = NULL, ..., coord_type = NULL){
 #'
 #' This function is normally used to convert an existing point pattern dataset,
 #' stored in another format, to the \code{"spp"} format.  To create a new point
-#' pattern from raw data such as lat,long coordinates, it is normally easier
-#' to use the creator function \code{\link{spp}}.
+#' pattern from raw data such as lat,long coordinates, it is normally easier to
+#' use the creator function \code{\link{spp}}.
 #'
 #' The dataset \code{X} may be:
+#'
 #' \itemize{
-#' \item an object of class \code{"spp"}
-#' \item a matrix or data frame with at least two columns
-#' \item a structure with entries \code{lat}, \code{long} which are numeric
-#' vectors of equal length
-#' \item a numeric vector of length 2, interpreted as
-#' the coordinates of a single point.
+#'   \item an object of class \code{"spp"}
+#'   \item a matrix or data frame with at least two columns
+#'   \item a structure with entries \code{lat}, \code{long} which are numeric
+#'     vectors of equal length
+#'   \item a numeric vector of length 2, interpreted as the coordinates of a
+#'     single point.
 #' }
-#' The first case is typically used to change (or ensure) a specific coordinate format by specifying either
-#' the argument \code{domain} directly or indirectly using the argument \code{coord_type}
-#' which is passed to \code{\link{sphere}} through the additional arguments
-#' \dots. In the last three cases the default behaviour is to assume the domain is the entire sphere with
-#' coordinates of type \code{"geo_deg"} (see \code{\link{spp}}). Alternatively the domain can be specified
-#' by the argument \code{domain} or through the additional arguments \dots.
+#'
+#' The first case is typically used to change (or ensure) a specific coordinate
+#' format by specifying either the argument \code{domain} directly or indirectly
+#' using the argument \code{coord_type} which is passed to \code{\link{sphere}}
+#' through the additional arguments \dots. In the last three cases the default
+#' behaviour is to assume the domain is the entire sphere with coordinates of
+#' type \code{"geo_deg"} (see \code{\link{spp}}). Alternatively the domain can
+#' be specified by the argument \code{domain} or through the additional
+#' arguments \dots.
 #'
 #' If \code{X} is a matrix or data frame, the first and second columns will be
 #' interpreted as the \eqn{lat} and \eqn{long} coordinates respectively. Any
@@ -171,14 +183,13 @@ as.data.frame.spp <- function(x, row.names = NULL, ..., coord_type = NULL){
 #' The function \code{as.spp} is generic, with methods for the classes
 #' \code{"spp"}, \code{"matrix"}, \code{"data.frame"} and a default method.
 #'
-#' Point pattern datasets can also be created by the function
-#' \code{\link{spp}}.
+#' Point pattern datasets can also be created by the function \code{\link{spp}}.
 #'
 #' @aliases as.spp as.spp.spp as.spp.matrix as.spp.data.frame as.spp.default
 #' @param X Data which will be converted into a point pattern
 #' @template dots_sphere
-#' @return An object of class \code{"spp"} (see \code{\link{spp}})
-#' describing the spherical point pattern and its domain.
+#' @return An object of class \code{"spp"} (see \code{\link{spp}}) describing
+#'   the spherical point pattern and its domain.
 #' @keywords spatial manip
 #' @export
 #' @examples
@@ -265,11 +276,10 @@ transspherecoords <- function(lat, long, from, to){
 #'
 #' @param x object of class \code{"spp"}.
 #' @param i Subset index. A valid subset index in the usual R sense, indicating
-#' which points should be retained.
+#'   which points should be retained.
 #' @param j Ignored. (Required for compatibility with the generic function.)
 #' @param drop Ignored. (Required for compatibility with the generic function.)
-#' @param \dots Ignored. (Required for compatibility with the generic
-#' function.)
+#' @param \dots Ignored. (Required for compatibility with the generic function.)
 #' @return object of class \code{"spp"}.
 #' @export
 #' @examples

@@ -9,12 +9,14 @@
 \arguments{
 \item{x}{Spherical point patten of class \code{"spp"}.}
 
-\item{row.names}{NULL or a character vector giving the row names for the data frame. Missing values are not allowed.}
+\item{row.names}{NULL or a character vector giving the row names for the data
+frame. Missing values are not allowed.}
 
 \item{...}{Ignored.}
 
-\item{coord_type}{String. Type of coordinates used for return coordinates. Defaults to coordinate type of \code{x}.
- See \code{\link{spp}} for supported coordinate types.}
+\item{coord_type}{String. Type of coordinates used for return coordinates.
+  Defaults to coordinate type of \code{x}. See \code{\link{spp}} for
+  supported coordinate types.}
 }
 \value{
 \code{data.frame} with coordinates.

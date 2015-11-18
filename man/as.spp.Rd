@@ -26,8 +26,8 @@ as.spp(X, ...)
 \item{domain}{Object of class \code{"sphericaldomain"}.}
 }
 \value{
-An object of class \code{"spp"} (see \code{\link{spp}})
-describing the spherical point pattern and its domain.
+An object of class \code{"spp"} (see \code{\link{spp}}) describing
+  the spherical point pattern and its domain.
 }
 \description{
 Tries to coerce any reasonable kind of data to a spherical point pattern (an
@@ -39,24 +39,28 @@ Converts the dataset \code{X} to a point pattern (an object of class
 
 This function is normally used to convert an existing point pattern dataset,
 stored in another format, to the \code{"spp"} format.  To create a new point
-pattern from raw data such as lat,long coordinates, it is normally easier
-to use the creator function \code{\link{spp}}.
+pattern from raw data such as lat,long coordinates, it is normally easier to
+use the creator function \code{\link{spp}}.
 
 The dataset \code{X} may be:
+
 \itemize{
-\item an object of class \code{"spp"}
-\item a matrix or data frame with at least two columns
-\item a structure with entries \code{lat}, \code{long} which are numeric
-vectors of equal length
-\item a numeric vector of length 2, interpreted as
-the coordinates of a single point.
+  \item an object of class \code{"spp"}
+  \item a matrix or data frame with at least two columns
+  \item a structure with entries \code{lat}, \code{long} which are numeric
+    vectors of equal length
+  \item a numeric vector of length 2, interpreted as the coordinates of a
+    single point.
 }
-The first case is typically used to change (or ensure) a specific coordinate format by specifying either
-the argument \code{domain} directly or indirectly using the argument \code{coord_type}
-which is passed to \code{\link{sphere}} through the additional arguments
-\dots. In the last three cases the default behaviour is to assume the domain is the entire sphere with
-coordinates of type \code{"geo_deg"} (see \code{\link{spp}}). Alternatively the domain can be specified
-by the argument \code{domain} or through the additional arguments \dots.
+
+The first case is typically used to change (or ensure) a specific coordinate
+format by specifying either the argument \code{domain} directly or indirectly
+using the argument \code{coord_type} which is passed to \code{\link{sphere}}
+through the additional arguments \dots. In the last three cases the default
+behaviour is to assume the domain is the entire sphere with coordinates of
+type \code{"geo_deg"} (see \code{\link{spp}}). Alternatively the domain can
+be specified by the argument \code{domain} or through the additional
+arguments \dots.
 
 If \code{X} is a matrix or data frame, the first and second columns will be
 interpreted as the \eqn{lat} and \eqn{long} coordinates respectively. Any
@@ -65,8 +69,7 @@ additional columns will be ignored.
 The function \code{as.spp} is generic, with methods for the classes
 \code{"spp"}, \code{"matrix"}, \code{"data.frame"} and a default method.
 
-Point pattern datasets can also be created by the function
-\code{\link{spp}}.
+Point pattern datasets can also be created by the function \code{\link{spp}}.
 }
 \section{Methods (by class)}{
 \itemize{

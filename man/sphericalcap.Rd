@@ -7,17 +7,20 @@
 sphericalcap(centre, dist, domain, ..., simplify = TRUE)
 }
 \arguments{
-\item{centre}{Numeric of length two with latitude and longitude of point
-on sphere to be used as centre for the cap.}
+\item{centre}{Numeric of length two with latitude and longitude of point on
+sphere to be used as centre for the cap.}
 
-\item{dist}{Numeric of length one defining the extend of the cap.
-Should be positive and at most half the circumfrence of the sphere.}
+\item{dist}{Numeric of length one defining the extend of the cap. Should be
+positive and at most half the circumfrence of the sphere.}
 
-\item{domain}{Sphere containing the cap (object of class \code{"sphericaldomain"}).}
+\item{domain}{Sphere containing the cap (object of class
+\code{"sphericaldomain"}).}
 
-\item{...}{Arguments passed to \code{\link{sphere}} to specify \code{domain} if this is NULL (the default).}
+\item{...}{Arguments passed to \code{\link{sphere}} to specify \code{domain}
+if this is NULL (the default).}
 
-\item{simplify}{Logical. Whether to simplify to full sphere if the cap extends over the full sphere.}
+\item{simplify}{Logical. Whether to simplify to full sphere if the cap
+  extends over the full sphere.}
 }
 \value{
 Object of class \code{"sphericaldomain"}.

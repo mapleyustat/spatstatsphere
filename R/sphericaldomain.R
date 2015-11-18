@@ -2,27 +2,35 @@
 #'
 #' @param radius Numeric. Defaults to 1.
 #' @param coord_type String. Type of coordinates used. See details.
-#' @param unitname Optional. Name of unit of length. Either a single character string,
-#'  or a vector of two character strings giving the singular and plural forms, respectively.
+#' @param unitname Optional. Name of unit of length. Either a single character
+#'   string, or a vector of two character strings giving the singular and plural
+#'   forms, respectively.
 #' @param ... Ignored.
 #'
 #' @details Currently three coordinate types/conventions are supported:
 #' \describe{
-#' \item{\code{"geo_deg"}}{
-#' Geographical coordinates in degrees. Latitude from -90 (south pole) to 90 (north pole). Longitude from -180 to 180 where 0 is the prime meridian (Greenwich).
+#'   \item{\code{"geo_deg"}}{
+#'     Geographical coordinates in degrees. Latitude from -90 (south pole) to 90
+#'     (north pole). Longitude from -180 to 180 where 0 is the prime meridian
+#'     (Greenwich).
+#'   }
+#'   \item{\code{"geo_rad"}}{
+#'     Geographical coordinates in radians. Latitude from -\eqn{\pi/2}{pi/2}
+#'     (south pole) to \eqn{\pi}{pi}/2 (north pole). Longitude from
+#'     -\eqn{\pi/2}{pi/2} to \eqn{\pi/2}{pi/2} where 0 is the prime meridian
+#'     (Greenwich).
+#'   }
+#'   \item{\code{"polar"}}{
+#'     Polar coordinates in radians. Latitude from 0 (north pole) to
+#'     \eqn{\pi}{pi} (south pole). Longitude from 0 to 2*\eqn{\pi}{pi} where 0
+#'     is the prime meridian (Greenwich).
+#'   }
 #' }
-#' \item{\code{"geo_rad"}}{
-#' Geographical coordinates in radians. Latitude from -\eqn{\pi/2}{pi/2} (south pole) to \eqn{\pi}{pi}/2 (north pole). Longitude from -\eqn{\pi/2}{pi/2} to \eqn{\pi/2}{pi/2} where 0 is the prime meridian (Greenwich).
-#' }
-#' \item{\code{"polar"}}{
-#' Polar coordinates in radians. Latitude from 0 (north pole) to \eqn{\pi}{pi} (south pole).
-#' Longitude from 0 to 2*\eqn{\pi}{pi} where 0 is the prime meridian (Greenwich).
-#' }}
-#'
 #'
 #' @return Object of class \code{"sphericaldomain"}
 #' @export
-sphere <- function(radius = 1, coord_type = c("geo_deg", "geo_rad", "polar"), unitname = NULL, ...){
+sphere <- function(radius = 1, coord_type = c("geo_deg", "geo_rad", "polar"),
+                   unitname = NULL, ...){
   coord_type <- match.arg(coord_type)
   unitname <- as.units(unitname)
   lat_range <- switch(coord_type,
@@ -56,7 +64,9 @@ print.sphericaldomain <- function(x, ...){
                   ") defined on:")
     spatstat:::splat(msg)
   }
-  spatstat:::splat(paste("Sphere of radius", x$radius, "using lat,long coordinates of type:", sQuote(x$coord_type)))
+  spatstat:::splat(paste("Sphere of radius", x$radius,
+                         "using lat,long coordinates of type:",
+                         sQuote(x$coord_type)))
   return(invisible(NULL))
 }
 
@@ -91,13 +101,16 @@ inside_sphericaldomain <- function(lat, long, domain){
 
 #' Define spherical cap
 #'
-#' @param centre Numeric of length two with latitude and longitude of point
-#' on sphere to be used as centre for the cap.
-#' @param dist Numeric of length one defining the extend of the cap.
-#' Should be positive and at most half the circumfrence of the sphere.
-#' @param domain Sphere containing the cap (object of class \code{"sphericaldomain"}).
-#' @param ... Arguments passed to \code{\link{sphere}} to specify \code{domain} if this is NULL (the default).
-#' @param simplify Logical. Whether to simplify to full sphere if the cap extends over the full sphere.
+#' @param centre Numeric of length two with latitude and longitude of point on
+#'   sphere to be used as centre for the cap.
+#' @param dist Numeric of length one defining the extend of the cap. Should be
+#'   positive and at most half the circumfrence of the sphere.
+#' @param domain Sphere containing the cap (object of class
+#'   \code{"sphericaldomain"}).
+#' @param ... Arguments passed to \code{\link{sphere}} to specify \code{domain}
+#'   if this is NULL (the default).
+#' @param simplify Logical. Whether to simplify to full sphere if the cap
+#'   extends over the full sphere.
 #'
 #' @return Object of class \code{"sphericaldomain"}.
 #' @export
@@ -136,8 +149,9 @@ sphericalcap <- function(centre, dist, domain, ..., simplify = TRUE){
 #' Convert object to a spherical domain with desired coordinate type
 #'
 #' @param x Object of class \code{"sphericaldomain"}.
-#' @param coord_type String. Type of coordinates used for return coordinates. Defaults to coordinate type of \code{x}.
-#'  See \code{\link{spp}} for supported coordinate types.
+#' @param coord_type String. Type of coordinates used for return coordinates.
+#'   Defaults to coordinate type of \code{x}. See \code{\link{spp}} for
+#'   supported coordinate types.
 #'
 #' @return Spherical domain of class \code{"sphericaldomain"}
 #' @export

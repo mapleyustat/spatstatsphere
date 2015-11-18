@@ -9,8 +9,9 @@ as.sphericaldomain(x, coord_type = NULL)
 \arguments{
 \item{x}{Object of class \code{"sphericaldomain"}.}
 
-\item{coord_type}{String. Type of coordinates used for return coordinates. Defaults to coordinate type of \code{x}.
- See \code{\link{spp}} for supported coordinate types.}
+\item{coord_type}{String. Type of coordinates used for return coordinates.
+  Defaults to coordinate type of \code{x}. See \code{\link{spp}} for
+  supported coordinate types.}
 }
 \value{
 Spherical domain of class \code{"sphericaldomain"}
