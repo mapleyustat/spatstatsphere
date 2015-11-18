@@ -1,7 +1,8 @@
-#' @title Distance on sphere.
+#' Distance on sphere.
 #'
-#' @details Low-level function to calculate distance on the sphere. No checking
-#'   of arguments is done.
+#' Low-level function to calculate distance on the sphere. No checking
+#' of arguments is done.
+#'
 #' @param lat1,lat2 Numeric of length 1. Latitude in radians between -pi/2 and
 #'   pi/2.
 #' @param long1,long2 Numeric of length 1. Longitude in radians between -pi and
@@ -26,8 +27,9 @@ spheredist <- function(lat1, long1, lat2, long2, domain = sphere(1)){
 
 #' Distance on unitsphere.
 #'
-#' @details Low-level function to calculate distance on the sphere. No checking
-#'   of arguments is done.
+#' Low-level function to calculate distance on the sphere. No checking
+#' of arguments is done.
+#'
 #' @param lat1,lat2 Numeric of length 1. Latitude in radians between -pi/2 and
 #'   pi/2.
 #' @param long1,long2 Numeric of length 1. Longitude in radians between -pi and
