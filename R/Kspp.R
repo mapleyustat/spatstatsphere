@@ -50,6 +50,8 @@ Kspp <- function(X, r = NULL, rmax = NULL, breaks = NULL, correction = NULL){
   n <- npoints(X)
   lambda <- n/areaW
 
+  # Stop if 1 or fewer points
+  if(n<2) stop("Can't estimate K-function based on 1 or fewer points.")
   ## initialise output object
   Odf <- data.frame(r = r, theo = 2*pi*(1-cos(r)))
   desc <- c("distance argument r",
