@@ -57,10 +57,8 @@ unitspheredist <- function(lat1, long1, lat2, long2){
 #' pairdist(X)
 pairdist.spp <- function(X, ...){
   dom <- domain(X)
-  if(dom$coord_type!="geo_rad"){
-    X <- as.spp(X, coord_type = "geo_rad")
-  }
   n <- npoints(X)
+  X <- as.data.frame(X, coord_type = "geo_rad")
   lat <- X$lat
   long <- X$long
   distfun <- function(i,j){
@@ -85,6 +83,7 @@ bdist_spherepoints <- function(X){
          "sphere" = rep(Inf, npoints(X)),
          "cap" = {
            centre <- dom$cap$centre
+           X <- coords(X)
            # Border dist equals total cap dist minus dist to cap centre.
            dom$cap$dist - spheredist(X$lat, X$long, centre[1], centre[2], dom)
          },

@@ -47,8 +47,8 @@ spp <- function(lat, long, domain = NULL, ..., check = TRUE){
   }
   else nout <- 0
 
-  rslt <- list(lat=lat, long=long, n=n, domain = domain)
-  class(rslt) <- "spp"
+  rslt <- ppx(data.frame(lat=lat, long=long), domain = domain, coord.type = rep("s", 2))
+  class(rslt) <- c("spp", class(rslt))
 
   if (check && anyDuplicated(rslt))
     warning("data contain duplicated points")
@@ -66,7 +66,7 @@ spp <- function(lat, long, domain = NULL, ..., check = TRUE){
 print.spp <- function(x, ...){
   spatstat:::splat(paste("Spherical point pattern with", npoints(x), "points."))
   spatstat:::splat("Domain:")
-  print(x$domain)
+  print(domain(x))
   # Temporary hack: Detect attribute set by simulation algorithm for DPPs
   nmean <- attr(x, "nmean")
   if(!is.null(nmean)){
@@ -107,7 +107,20 @@ domain.spp <- function(X, ...){
 #' npoints(X)
 #'
 npoints.spp <- function(x){
-  x$n
+  npoints.ppx(x)
+}
+
+#' Extract Coordinates of a Point Pattern on a Sphere
+#'
+#' @param x Object of class \code{"spp"}
+#' @param ... Ignored
+#'
+#' @return a \code{data.frame} with one row for each point, containing the
+#'   coordinates.
+#' @export
+#'
+coords.spp <- function(x, ...){
+  coords.ppx(x, temporal = FALSE, local = FALSE)
 }
 
 #' Check for duplicated points in a spherical point pattern.
@@ -142,10 +155,9 @@ as.data.frame.spp <- function(x, row.names = NULL, ..., coord_type = NULL){
   coord_type <- ifelse(is.null(coord_type),
                        current,
                        match.arg(coord_type, c("geo_deg", "geo_rad", "polar")))
+  x <- coords(x)
   if(current!=coord_type){
-    latlong <- transspherecoords(x$lat, x$long, from = current, to = coord_type)
-    x$lat <- latlong$lat
-    x$long <- latlong$long
+    x <- transspherecoords(x$lat, x$long, from = current, to = coord_type)
   }
   data.frame(lat = x$lat, long = x$long, row.names = row.names)
 }
@@ -295,10 +307,10 @@ transspherecoords <- function(lat, long, from, to){
 #' X[1:2]
 #'
 "[.spp" <- function(x, i, j, drop, ...) {
-    verifyclass(x, "spp")
-    if(missing(i))
-        return(x)
-    if(x$n == 0)
-        return(x)
-    return(spp(x$lat[i], x$long[i], domain = domain(x)))
+  verifyclass(x, "spp")
+  if(missing(i) || npoints(x) == 0)
+    return(x)
+  dom <- domain(x)
+  x <- coords(x)
+  return(spp(x$lat[i], x$long[i], domain = dom))
 }
