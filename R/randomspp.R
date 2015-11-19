@@ -46,8 +46,11 @@ runifspp <- function(n, domain = NULL, nsim = 1, ..., drop = TRUE){
 #' rpoisspp(10)
 #'
 rpoisspp <- function(lambda, domain = NULL, nsim = 1, ..., drop = TRUE){
+  if(is.null(domain)){
+    domain <- do.call(sphere, list(...))
+  }
   if(is.null(lambda) || !is.finite(lambda) || lambda<0)
     stop("Argument lambda should be a finite non-negative number.")
-  n <- rpois(1, lambda)
-  return(runifspp(n, domain = domain, nsim = nsim, ..., drop = drop))
+  n <- rpois(1, lambda*area(domain))
+  return(runifspp(n, domain = domain, nsim = nsim, drop = drop))
 }
