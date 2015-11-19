@@ -77,39 +77,6 @@ print.spp <- function(x, ...){
   return(invisible(NULL))
 }
 
-#' Extract domain of spherical point pattern
-#'
-#' @param X Spherical point pattern of class \code{"spp"}.
-#' @param ... Ignored.
-#'
-#' @return Object of class \code{"sphericaldomain"}.
-#' @export
-#'
-#' @examples
-#' lat <- c(45, 0, -45)
-#' long <- c(90, 180, -90)
-#' X <- spp(lat, long)
-#' domain(X)
-domain.spp <- function(X, ...){
-  X$domain
-}
-
-#' Extract number of points in a spherical point pattern.
-#'
-#' @param x Spherical point patten of class \code{"spp"}.
-#'
-#' @export
-#'
-#' @examples
-#' lat <- c(45, 0, -45)
-#' long <- c(90, 180, -90)
-#' X <- spp(lat, long)
-#' npoints(X)
-#'
-npoints.spp <- function(x){
-  npoints.ppx(x)
-}
-
 #' Extract Coordinates of a Point Pattern on a Sphere
 #'
 #' @param x Object of class \code{"spp"}
@@ -121,20 +88,6 @@ npoints.spp <- function(x){
 #'
 coords.spp <- function(x, ...){
   coords.ppx(x, temporal = FALSE, local = FALSE)
-}
-
-#' Check for duplicated points in a spherical point pattern.
-#'
-#' @param x Spherical point patten of class \code{"spp"}.
-#' @param ... Additional arguments passed to
-#'   \code{\link{anyDuplicated.data.frame}}.
-#'
-#' @return An integer or real vector of length one with value the 1-based index
-#'   of the first duplicate if any, otherwise 0.
-#' @export
-#'
-anyDuplicated.spp <- function(x, ...){
-  anyDuplicated(as.data.frame(x), ...)
 }
 
 #' Extract coordinates of a spherical point pattern into a data.frame
