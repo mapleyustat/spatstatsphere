@@ -7,7 +7,9 @@
 runifspp(n, domain = NULL, nsim = 1, ..., drop = TRUE)
 }
 \arguments{
-\item{n}{Number of points to generate.}
+\item{n}{Number of points to generate. Either a single positve integer or a
+vector of integers of length \code{nsim} indicating the number of points in
+each of the \code{nsim} generated patterns.}
 
 \item{domain}{Object of class \code{"sphericaldomain"}.}
 

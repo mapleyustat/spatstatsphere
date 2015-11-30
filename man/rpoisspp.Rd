@@ -7,7 +7,9 @@
 rpoisspp(lambda, domain = NULL, nsim = 1, ..., drop = TRUE)
 }
 \arguments{
-\item{lambda}{Intensity. A positive numeric.}
+\item{lambda}{Intensity. Either a single positve numeric or a vector of
+length \code{nsim} indicating the intensity in each of the \code{nsim}
+generated patterns.}
 
 \item{domain}{Object of class \code{"sphericaldomain"}.}
 
