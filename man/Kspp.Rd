@@ -4,7 +4,8 @@
 \alias{Kspp}
 \title{K-function for spherical point pattern}
 \usage{
-Kspp(X, r = NULL, rmax = NULL, breaks = NULL, correction = NULL)
+Kspp(X, r = NULL, rmax = NULL, breaks = NULL, correction = NULL,
+  lambda = NULL, unnormalized = FALSE)
 }
 \arguments{
 \item{X}{Object of class \code{"spp"}.}
@@ -21,6 +22,10 @@ this argument; there is a sensible default. If necessary, specify
 \item{correction}{Optional. A character vector containing any selection of
 the options \code{"none"} and \code{"border"} (and possibly others in the
 future).}
+
+\item{lambda}{Intensity (usually not supplied). Estimated from data by default.}
+
+\item{unnormalized}{Logical. Only for internal use at the moment.}
 
 \item{\dots}{Ignored.}
 }

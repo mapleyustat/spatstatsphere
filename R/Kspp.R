@@ -11,6 +11,8 @@
 #' @param correction Optional. A character vector containing any selection of
 #'   the options \code{"none"} and \code{"border"} (and possibly others in the
 #'   future).
+#' @param lambda Intensity (usually not supplied). Estimated from data by default.
+#' @param unnormalized Logical. Only for internal use at the moment.
 #' @return An object of class \code{"fv"}, see \code{\link{fv.object}}, which
 #'   can be plotted directly using \code{\link{plot.fv}}.
 #'
@@ -27,7 +29,7 @@
 #' X <- runifspp(100)
 #' K <- Kspp(X)
 #'
-Kspp <- function(X, r = NULL, rmax = NULL, breaks = NULL, correction = NULL){
+Kspp <- function(X, r = NULL, rmax = NULL, breaks = NULL, correction = NULL, lambda = NULL, unnormalized = FALSE){
   ratio <- FALSE # This could potentially be an argument of the function in the long run.
   # Figure out r-values
   rmaxdefault <- rmax %orifnull% pi
@@ -48,10 +50,17 @@ Kspp <- function(X, r = NULL, rmax = NULL, breaks = NULL, correction = NULL){
   # Intensity
   areaW <- area(dom)
   n <- npoints(X)
-  lambda <- n/areaW
+  if(is.null(lambda)){
+    lambda <- n/areaW
+    lambda2 <- lambda * (n-1)/areaW
+  } else{
+    lambda2 <- lambda^2
+  }
 
   ## initialise output object
-  Odf <- data.frame(r = r, theo = 2*pi*(1-cos(r)))
+  theo <- 2*pi*(1-cos(r))
+  if(unnormalized) theo <- lambda2 * theo
+  Odf <- data.frame(r = r, theo = theo)
   desc <- c("distance argument r",
             "theoretical isotropic %s")
   OO <- fv(Odf,
@@ -82,6 +91,10 @@ Kspp <- function(X, r = NULL, rmax = NULL, breaks = NULL, correction = NULL){
     RS <- Kount(close$d, bI, b, breaks)
     numKb <- RS$numerator
     denKb <- lambda * RS$denom.count
+    if(unnormalized){
+      denKb / lambda
+      numKb <- numKb * (n-1)
+    }
     OO <- bind.ratfv(OO,
                      data.frame(border=numKb),
                      data.frame(border=denKb),
@@ -95,7 +108,7 @@ Kspp <- function(X, r = NULL, rmax = NULL, breaks = NULL, correction = NULL){
     ## Uncorrected for data on entire sphere.
     hh <- hist(delta, breaks = c(r, Inf), plot = FALSE)$counts
     khat <- c(0, cumsum(hh[-length(hh)]))
-    khat = 4*pi*khat/(n*(n-1));
+    if(!unnormalized) khat <- khat/(lambda2*areaW)
 
     ## uncorrected estimate
     OO <- bind.fv(OO, data.frame(un=khat),
