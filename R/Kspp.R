@@ -78,10 +78,24 @@ Kspp <- function(X, r = NULL, rmax = NULL, breaks = NULL, correction = NULL, lam
 
   delta <- pairdist(X)
   diag(delta) <- Inf
-  id <- delta<=rmax
-  close <- list(d = delta[id], i = row(delta)[id], j = col(delta)[id])
+
+  if(any(correction == "none")) {
+    ## Uncorrected for data on entire sphere.
+    hh <- hist(delta, breaks = c(r, Inf), plot = FALSE)$counts
+    khat <- c(0, cumsum(hh[-length(hh)]))
+    if(!unnormalized) khat <- khat/(lambda2*areaW)
+
+    ## uncorrected estimate
+    OO <- bind.fv(OO, data.frame(un=khat),
+                  "hat(%s)(r)",
+                  "uncorrected estimate of %s",
+                  "un")
+  }
 
   if(any(correction == "border")) {
+    ## Create list of r-close information
+    id <- delta<=rmax
+    close <- list(d = delta[id], i = row(delta)[id], j = col(delta)[id])
     ## border method
     ## Compute distances to boundary
     b <- bdist_spherepoints(X)
@@ -102,19 +116,6 @@ Kspp <- function(X, r = NULL, rmax = NULL, breaks = NULL, correction = NULL, lam
                      "border-corrected estimate of %s",
                      "border",
                      ratio=ratio)
-  }
-
-  if(any(correction == "none")) {
-    ## Uncorrected for data on entire sphere.
-    hh <- hist(delta, breaks = c(r, Inf), plot = FALSE)$counts
-    khat <- c(0, cumsum(hh[-length(hh)]))
-    if(!unnormalized) khat <- khat/(lambda2*areaW)
-
-    ## uncorrected estimate
-    OO <- bind.fv(OO, data.frame(un=khat),
-                  "hat(%s)(r)",
-                  "uncorrected estimate of %s",
-                  "un")
   }
 
   return(OO)
