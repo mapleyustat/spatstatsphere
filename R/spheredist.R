@@ -70,6 +70,26 @@ pairdist.spp <- function(X, ...){
   return(rslt)
 }
 
+#' Nearest neighbour distances
+#'
+#' Computes the vector of great circle (geodesic) distances to nearest neighbour for
+#' the points in a point pattern on the sphere
+#'
+#' @param X object of class \code{"spp"}.
+#' @param \dots ignored.
+#' @return Numeric of length n where n is the number of points in \code{X}.
+#'
+#' @export
+#'
+#' @examples
+#' X <- spp(pi*c(1/4,1/2,3/4), 2*pi*c(1/4,1/2,3/4), domain = sphere(type = "polar"))
+#' nndist(X)
+nndist.spp <- function(X, ...){
+  d <- pairdist(X)
+  diag(d) <- Inf
+  return(apply(d, 2, min))
+}
+
 #' Distance to border for points inside a spherical cap
 #'
 #' @param X Spherical point pattern of class \code{"spp"}
