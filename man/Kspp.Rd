@@ -5,7 +5,7 @@
 \title{K-function for spherical point pattern}
 \usage{
 Kspp(X, r = NULL, rmax = NULL, breaks = NULL, correction = NULL,
-  lambda = NULL, unnormalized = FALSE)
+  lambda = NULL, unnormalized = FALSE, angular_arg = FALSE)
 }
 \arguments{
 \item{X}{Object of class \code{"spp"}.}
@@ -27,6 +27,9 @@ future).}
 
 \item{unnormalized}{Logical. Only for internal use at the moment.}
 
+\item{angular_arg}{Logical. Interpret r values as angles (possibly in degrees
+rather than radians depending on coordinate type of \code{X}).}
+
 \item{\dots}{Ignored.}
 }
 \value{
@@ -36,10 +39,11 @@ An object of class \code{"fv"}, see \code{\link{fv.object}}, which
   Essentially a data frame containing columns \item{r}{the vector of values
   of the argument \eqn{r} at which the function \eqn{K} has been estimated }
   \item{theo}{the theoretical value \eqn{K(r) = 2 \pi (1-cos(r))}{K(r) = 2 *
-  pi * (1 - cos(r))} for a stationary Poisson process } together with columns
-  named \code{"none"}, and/or \code{"border"}, according to the selected edge
-  corrections. These columns contain estimates of the function \eqn{K(r)}
-  obtained by the edge corrections named.
+  pi * (1 - cos(r))} for a stationary Poisson process (where r is in
+  radians)} together with columns named \code{"none"}, and/or
+  \code{"border"}, according to the selected edge corrections. These columns
+  contain estimates of the function \eqn{K(r)} obtained by the edge
+  corrections named.
 }
 \description{
 K-function for spherical point pattern
