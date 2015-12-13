@@ -39,6 +39,7 @@ Gspp <- function(X, r = NULL, rmax = NULL, breaks = NULL, correction = NULL,
   # Check whether r values should be degrees (radians will be used and the chaged to degrees at the end)
   dom <- domain(X)
   degrees <- angular_arg && grepl("deg", dom$coord_type)
+  if(!is.null(r) && degrees) r <- r*2*pi/360
   if(!is.null(rmax) && degrees) rmax <- rmax*2*pi/360
 
   # Figure out r-values
