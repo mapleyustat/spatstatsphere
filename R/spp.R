@@ -231,13 +231,13 @@ transspherecoords <- function(lat, long, from, to){
     lat <- pi/2-lat
     long[long>pi] <- long[long>pi] - 2*pi
   }
-  # Convert from deg_rad to relevant type
+  # Convert from geo_rad to relevant type
   if(to=="geo_deg"){
     lat <- lat*180/pi
     long <- long*180/pi
   }
   if(to=="polar"){
-    lat <- 90-lat
+    lat <- pi/2-lat
     long[long<0] <- 2*pi + long[long<0]
   }
   return(list(lat = lat, long = long))
